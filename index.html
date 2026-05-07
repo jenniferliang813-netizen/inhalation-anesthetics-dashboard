@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吸入性麻醉藥 教學駕駛艙</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$']] },
+  startup: { typeset: false }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #ffffff;
+  --sidebar-bg: #EFF6FF;
+  --accent: #2563EB;
+  --accent-dark: #1D4ED8;
+  --accent-light: #DBEAFE;
+  --success: #10B981;
+  --success-light: #D1FAE5;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --danger: #EF4444;
+  --danger-light: #FEE2E2;
+  --card: #F8FAFC;
+  --card2: #F1F5F9;
+  --text: #1E293B;
+  --text-muted: #64748B;
+  --border: #E2E8F0;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
+  --radius: 10px;
+}
+html { font-size: 15px; scroll-behavior: smooth; }
+body { background: #F0F4F8; color: var(--text); font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif; min-height: 100vh; }
+
+/* ── HEADER ── */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 0 1.5rem;
+}
+.header-inner {
+  max-width: 1600px; margin: 0 auto;
+  display: flex; align-items: center; gap: 1.5rem;
+  height: 60px;
+}
+.header-badge {
+  background: var(--accent); color: #fff;
+  font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+  padding: .25rem .6rem; border-radius: 999px;
+  white-space: nowrap;
+}
+.header-title { font-size: 1.1rem; font-weight: 700; color: var(--text); white-space: nowrap; }
+.header-progress { flex: 1; display: flex; align-items: center; gap: .75rem; min-width: 0; }
+.progress-bar-wrap { flex: 1; background: var(--border); border-radius: 999px; height: 8px; min-width: 80px; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #60A5FA); border-radius: 999px; transition: width .4s ease; }
+.progress-label { font-size: .8rem; color: var(--text-muted); white-space: nowrap; min-width: 2.5rem; text-align: right; }
+
+/* ── LAYOUT ── */
+.layout {
+  max-width: 1600px; margin: 0 auto;
+  display: grid; grid-template-columns: 230px 1fr;
+  gap: 1.25rem; padding: 1.25rem 1.5rem;
+  align-items: start;
+}
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: sticky; top: 76px;
+  background: var(--bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.sidebar-heading {
+  background: var(--accent); color: #fff;
+  font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+  padding: .7rem 1rem; text-transform: uppercase;
+}
+.chapter-list { padding: .5rem 0; }
+.chapter-btn {
+  display: flex; align-items: center; gap: .5rem; width: 100%;
+  padding: .55rem 1rem; border: none; background: transparent;
+  color: var(--text); font-size: .82rem; cursor: pointer;
+  text-align: left; transition: background .15s, color .15s;
+  border-left: 3px solid transparent;
+}
+.chapter-btn:hover { background: var(--accent-light); color: var(--accent); }
+.chapter-btn.active { background: var(--accent-light); color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.chapter-btn .ch-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 4px;
+  background: var(--card2); font-size: .72rem; font-weight: 700;
+  flex-shrink: 0;
+}
+.chapter-btn.active .ch-num { background: var(--accent); color: #fff; }
+.sidebar-divider { margin: .5rem 1rem; border: none; border-top: 1px solid var(--border); }
+.quiz-nav-btn {
+  display: flex; align-items: center; gap: .5rem; width: 100%;
+  margin: .5rem; padding: .6rem .8rem;
+  background: linear-gradient(135deg, var(--accent), #7C3AED);
+  color: #fff; border: none; border-radius: 8px;
+  font-size: .82rem; font-weight: 600; cursor: pointer;
+  transition: opacity .15s; width: calc(100% - 1rem);
+}
+.quiz-nav-btn:hover { opacity: .9; }
+
+/* ── CARDS / SECTIONS ── */
+.card {
+  background: var(--bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .85rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.card-title {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .95rem; font-weight: 700; color: var(--text);
+}
+.card-title .icon { font-size: 1.1rem; }
+.card-body { padding: 1.25rem; }
+
+.content { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* ── SLIDE VIEWER ── */
+.slide-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .85rem 1.25rem; border-bottom: 1px solid var(--border);
+}
+.slide-title { font-size: .9rem; font-weight: 600; color: var(--text); max-width: 60%; }
+.slide-counter-badge {
+  background: var(--card2); color: var(--text-muted);
+  font-size: .8rem; font-weight: 600; padding: .3rem .7rem; border-radius: 999px;
+}
+.slide-img-wrap {
+  background: #000; display: flex; align-items: center; justify-content: center;
+  min-height: 200px; position: relative;
+}
+.slide-img-wrap img { width: 100%; height: auto; max-height: 520px; object-fit: contain; display: block; }
+.slide-nav-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .75rem 1.25rem; border-top: 1px solid var(--border); gap: .75rem;
+}
+.btn-nav {
+  display: flex; align-items: center; gap: .4rem;
+  padding: .5rem 1.1rem; border: 1.5px solid var(--border);
+  background: var(--bg); color: var(--text); border-radius: 8px;
+  font-size: .85rem; font-weight: 600; cursor: pointer;
+  transition: all .15s;
+}
+.btn-nav:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-nav:disabled { opacity: .35; cursor: not-allowed; }
+.slide-thumb-track {
+  display: flex; align-items: center; gap: 4px; flex: 1; overflow-x: auto; padding: 4px 0;
+  scrollbar-width: none;
+}
+.slide-thumb-track::-webkit-scrollbar { display: none; }
+.slide-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: var(--border); border: none; cursor: pointer; transition: all .15s;
+}
+.slide-dot.active { background: var(--accent); transform: scale(1.4); }
+.slide-dot.chapter-start { background: #93C5FD; }
+
+/* ── INFOGRAPHIC ── */
+.infographic-wrap { text-align: center; }
+.infographic-wrap img { width: 100%; height: auto; border-radius: 8px; }
+.infographic-caption {
+  font-size: .8rem; color: var(--text-muted); margin-top: .75rem;
+  padding: .5rem .75rem; background: var(--card2); border-radius: 6px;
+  display: inline-block;
+}
+.no-infographic {
+  text-align: center; padding: 2rem; color: var(--text-muted);
+  font-size: .9rem; background: var(--card); border-radius: 8px;
+}
+
+/* ── YOUTUBE ── */
+.yt-thumb-wrap {
+  position: relative; border-radius: 8px; overflow: hidden;
+  background: #000; cursor: pointer;
+  aspect-ratio: 16/9;
+}
+.yt-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .2s; }
+.yt-thumb-wrap:hover img { opacity: .85; }
+.yt-play-btn {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(255,0,0,.92); border: 3px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; transition: transform .2s;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+}
+.yt-thumb-wrap:hover .yt-play-btn { transform: translate(-50%,-50%) scale(1.1); }
+.yt-play-btn::after {
+  content: ''; border-style: solid;
+  border-width: 12px 0 12px 22px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 4px;
+}
+.yt-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
+  color: #fff; font-size: .85rem; padding: .75rem 1rem .6rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.yt-ext-badge {
+  background: rgba(255,255,255,.2); border-radius: 999px;
+  padding: .2rem .6rem; font-size: .75rem; font-weight: 600;
+}
+.yt-edit-row { display: flex; align-items: center; gap: .5rem; margin-top: .75rem; flex-wrap: wrap; }
+.yt-edit-row input {
+  flex: 1; min-width: 200px; padding: .45rem .8rem;
+  border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: .85rem; color: var(--text); background: var(--card);
+  display: none;
+}
+.yt-edit-row input.show { display: block; }
+.btn-sm {
+  padding: .4rem .9rem; border: 1.5px solid var(--border);
+  background: var(--bg); color: var(--text); border-radius: 7px;
+  font-size: .8rem; font-weight: 600; cursor: pointer; transition: all .15s;
+  white-space: nowrap;
+}
+.btn-sm:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ── QUIZ SECTION ── */
+.quiz-wrapper {
+  max-width: 1600px; margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.quiz-header-bar {
+  background: linear-gradient(135deg, var(--accent), #7C3AED);
+  border-radius: var(--radius); padding: 1.5rem;
+  color: #fff; margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.quiz-header-bar h2 { font-size: 1.2rem; font-weight: 700; }
+.quiz-header-bar p { font-size: .85rem; opacity: .85; margin-top: .25rem; }
+.quiz-icon { font-size: 2.5rem; }
+.quiz-meta {
+  display: flex; gap: 1rem; margin-top: .75rem; flex-wrap: wrap;
+}
+.quiz-meta-chip {
+  background: rgba(255,255,255,.2); border-radius: 999px;
+  padding: .3rem .75rem; font-size: .78rem; font-weight: 600;
+}
+.quiz-questions { display: flex; flex-direction: column; gap: 1rem; }
+.question-card {
+  background: var(--bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+  border-left: 4px solid var(--border); transition: border-color .2s;
+}
+.question-card.answered-correct { border-left-color: var(--success); }
+.question-card.answered-wrong { border-left-color: var(--danger); }
+.question-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 1rem 1.25rem .75rem; gap: 1rem;
+}
+.question-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--accent); color: #fff;
+  font-size: .8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.question-text { font-size: .95rem; font-weight: 600; line-height: 1.55; flex: 1; }
+.question-hint {
+  font-size: .78rem; color: var(--text-muted);
+  background: var(--card2); border-radius: 6px;
+  padding: .4rem .7rem; flex-shrink: 0; max-width: 220px;
+  text-align: right;
+}
+.options-grid { display: flex; flex-direction: column; gap: .5rem; padding: 0 1.25rem 1rem; }
+.option-btn {
+  display: flex; align-items: flex-start; gap: .75rem;
+  padding: .65rem 1rem; border: 1.5px solid var(--border);
+  border-radius: 8px; background: var(--bg);
+  text-align: left; cursor: pointer; transition: all .15s;
+  font-size: .88rem; color: var(--text); width: 100%;
+}
+.option-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-light); }
+.option-btn:disabled { cursor: default; }
+.option-btn.correct { border-color: var(--success); background: var(--success-light); }
+.option-btn.wrong { border-color: var(--danger); background: var(--danger-light); }
+.option-btn.reveal-correct { border-color: var(--success); background: var(--success-light); }
+.option-label {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 5px;
+  border: 1.5px solid var(--border); background: var(--card2);
+  font-size: .75rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.option-btn.correct .option-label { background: var(--success); border-color: var(--success); color: #fff; }
+.option-btn.wrong .option-label { background: var(--danger); border-color: var(--danger); color: #fff; }
+.option-btn.reveal-correct .option-label { background: var(--success); border-color: var(--success); color: #fff; }
+.option-text { flex: 1; line-height: 1.5; }
+.question-footer { padding: 0 1.25rem 1rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.btn-rationale {
+  padding: .4rem .85rem; background: var(--card2);
+  border: 1.5px solid var(--border); border-radius: 7px;
+  font-size: .8rem; font-weight: 600; color: var(--text-muted); cursor: pointer;
+  transition: all .15s; display: none;
+}
+.btn-rationale.show { display: inline-flex; align-items: center; gap: .4rem; }
+.btn-rationale:hover { background: var(--warning-light); border-color: var(--warning); color: #92400E; }
+.slide-ref {
+  font-size: .78rem; color: var(--accent);
+  background: var(--accent-light); border-radius: 999px;
+  padding: .25rem .6rem; display: none; font-weight: 600;
+}
+.slide-ref.show { display: inline-flex; align-items: center; gap: .3rem; }
+.rationale-box {
+  margin: 0 1.25rem 1rem; padding: .75rem 1rem;
+  background: var(--warning-light); border: 1px solid #FDE68A;
+  border-radius: 8px; font-size: .85rem; line-height: 1.6;
+  display: none;
+}
+.rationale-box.show { display: block; }
+.rationale-box.correct-bg { background: var(--success-light); border-color: #6EE7B7; }
+.result-box {
+  background: var(--bg); border-radius: var(--radius); box-shadow: var(--shadow);
+  text-align: center; padding: 2.5rem 1.5rem; margin-top: 1.5rem;
+  display: none;
+}
+.result-box.show { display: block; }
+.result-score { font-size: 3rem; font-weight: 800; color: var(--accent); }
+.result-label { font-size: 1rem; color: var(--text-muted); margin-top: .25rem; }
+.result-grade { font-size: 1.2rem; font-weight: 700; margin-top: .75rem; }
+.btn-restart {
+  margin-top: 1.25rem; padding: .65rem 1.75rem;
+  background: var(--accent); color: #fff; border: none;
+  border-radius: 8px; font-size: .9rem; font-weight: 700;
+  cursor: pointer; transition: background .15s;
+}
+.btn-restart:hover { background: var(--accent-dark); }
+
+/* ── ANCHOR SCROLL TARGET ── */
+#quiz-anchor { scroll-margin-top: 70px; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <span class="header-badge">秀傳醫療體系 麻醉科</span>
+    <span class="header-title">吸入性麻醉藥 教學駕駛艙</span>
+    <div class="header-progress">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <span class="progress-label" id="progressLabel">0%</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-heading">教學章節</div>
+    <div class="chapter-list">
+      <button class="chapter-btn active" onclick="goToSlide(1)" id="ch-cover">
+        <span class="ch-num">封</span> 封面 &amp; 大綱
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(3)" id="ch-01">
+        <span class="ch-num">01</span> 概論與分類
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(5)" id="ch-02">
+        <span class="ch-num">02</span> 藥物動力學路徑
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(7)" id="ch-03">
+        <span class="ch-num">03</span> 吸收三大影響因素
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(9)" id="ch-04">
+        <span class="ch-num">04</span> 血氣分配係數
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(11)" id="ch-05">
+        <span class="ch-num">05</span> MAC 定義與臨床意義
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(13)" id="ch-06">
+        <span class="ch-num">06</span> MAC 影響因素
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(15)" id="ch-07">
+        <span class="ch-num">07</span> 藥物特性比較
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(17)" id="ch-08">
+        <span class="ch-num">08</span> 心血管系統影響
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(19)" id="ch-09">
+        <span class="ch-num">09</span> 呼吸系統影響
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(21)" id="ch-10">
+        <span class="ch-num">10</span> 腦神經與顱內壓
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(23)" id="ch-11">
+        <span class="ch-num">11</span> 惡性高熱
+      </button>
+      <button class="chapter-btn" onclick="goToSlide(26)" id="ch-12">
+        <span class="ch-num">12</span> 藥物毒性注意事項
+      </button>
+    </div>
+    <hr class="sidebar-divider">
+    <button class="quiz-nav-btn" onclick="scrollToQuiz()">
+      📝 開始測驗
+    </button>
+  </aside>
+
+  <!-- CONTENT COLUMN -->
+  <div class="content">
+
+    <!-- SLIDE VIEWER -->
+    <div class="card">
+      <div class="slide-top">
+        <div class="slide-title" id="slideTitle">吸入性麻醉藥</div>
+        <span class="slide-counter-badge" id="slideCounter">第 1 / 30 張</span>
+      </div>
+      <div class="slide-img-wrap">
+        <img id="slideImg" src="slides/slide_001.jpg" alt="投影片" loading="eager">
+      </div>
+      <div class="slide-nav-bar">
+        <button class="btn-nav" id="btnPrev" onclick="prevSlide()">◀ 上一張</button>
+        <div class="slide-thumb-track" id="dotTrack"></div>
+        <button class="btn-nav" id="btnNext" onclick="nextSlide()">下一張 ▶</button>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC PANEL -->
+    <div class="card" id="infographicCard">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📊</span> 主題資訊圖表</div>
+        <span id="infographicLabel" style="font-size:.8rem;color:var(--text-muted)"></span>
+      </div>
+      <div class="card-body">
+        <div class="infographic-wrap" id="infographicWrap"></div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE SECTION -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📺</span> 教學影片</div>
+      </div>
+      <div class="card-body">
+        <div class="yt-thumb-wrap" id="ytThumbWrap" onclick="openYT()">
+          <img id="ytThumb" src="https://img.youtube.com/vi/VHF8NnXYPtM/maxresdefault.jpg" alt="教學影片縮圖">
+          <div class="yt-play-btn"></div>
+          <div class="yt-label">
+            <span>點擊前往 YouTube 觀看</span>
+            <span class="yt-ext-badge">↗ 開新分頁</span>
+          </div>
+        </div>
+        <div class="yt-edit-row">
+          <button class="btn-sm" onclick="toggleYTEdit()">✏️ 更換影片連結</button>
+          <input type="text" id="ytInput" placeholder="https://youtu.be/..." class="">
+          <button class="btn-sm" id="ytSaveBtn" onclick="loadYT()" style="display:none">更新</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /layout -->
+
+<!-- QUIZ SECTION -->
+<div class="quiz-wrapper" id="quiz-anchor">
+  <div class="quiz-header-bar">
+    <div class="quiz-icon">📝</div>
+    <div>
+      <h2>學習成效測驗</h2>
+      <p>共 13 道題目，涵蓋吸入性麻醉藥核心知識。答題後可查看詳解與對應投影片。</p>
+      <div class="quiz-meta">
+        <span class="quiz-meta-chip">📋 13 題</span>
+        <span class="quiz-meta-chip">⏱ 預計 10 分鐘</span>
+        <span class="quiz-meta-chip">🎯 點選選項即作答</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-questions" id="quizContainer"></div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-score" id="resultScore">0 / 13</div>
+    <div class="result-label">答對題數</div>
+    <div class="result-grade" id="resultGrade"></div>
+    <button class="btn-restart" onclick="restartQuiz()">🔄 重新作答</button>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const TOTAL_SLIDES = 30;
+
+// Slide number → infographic index (1-12) or null
+const INFOGRAPHIC_MAP = {
+  1: null, 2: null,
+  3: 1,  4: 1,
+  5: 2,  6: 2,
+  7: 3,  8: 3,
+  9: 4,  10: 4,
+  11: 5, 12: 5,
+  13: 6, 14: 6,
+  15: 7, 16: 7,
+  17: 8, 18: 8,
+  19: 9, 20: 9,
+  21: 10, 22: 10,
+  23: 11, 24: 11, 25: 11,
+  26: 12, 27: 12,
+  28: null, 29: null, 30: null
+};
+
+const INFOGRAPHIC_FILES = {
+  1: 'infographic_01_概論與分類.png',
+  2: 'infographic_02_藥物動力學路徑.png',
+  3: 'infographic_03_吸收三大影響因素.png',
+  4: 'infographic_04_血氣分配係數.png',
+  5: 'infographic_05_MAC定義與臨床意義.png',
+  6: 'infographic_06_MAC影響因素.png',
+  7: 'infographic_07_藥物特性比較.png',
+  8: 'infographic_08_心血管系統影響.png',
+  9: 'infographic_09_呼吸系統影響.png',
+  10: 'infographic_10_腦神經與顱內壓.png',
+  11: 'infographic_11_惡性高熱.png',
+  12: 'infographic_12_藥物毒性注意事項.png'
+};
+
+const INFOGRAPHIC_LABELS = {
+  1: 'CH.01 概論與分類',
+  2: 'CH.02 藥物動力學路徑',
+  3: 'CH.03 吸收三大影響因素',
+  4: 'CH.04 血氣分配係數',
+  5: 'CH.05 MAC 定義與臨床意義',
+  6: 'CH.06 MAC 影響因素',
+  7: 'CH.07 藥物特性比較',
+  8: 'CH.08 心血管系統影響',
+  9: 'CH.09 呼吸系統影響',
+  10: 'CH.10 腦神經與顱內壓',
+  11: 'CH.11 惡性高熱',
+  12: 'CH.12 藥物毒性注意事項'
+};
+
+const SLIDE_TITLES = {
+  1: '封面', 2: '課程大綱',
+  3: 'CH.01 — 章節開始', 4: 'CH.01 吸入性麻醉藥概論與分類',
+  5: 'CH.02 — 章節開始', 6: 'CH.02 藥物動力學路徑',
+  7: 'CH.03 — 章節開始', 8: 'CH.03 吸收三大影響因素',
+  9: 'CH.04 — 章節開始', 10: 'CH.04 血／氣分配係數',
+  11: 'CH.05 — 章節開始', 12: 'CH.05 MAC 定義與臨床意義',
+  13: 'CH.06 — 章節開始', 14: 'CH.06 MAC 影響因素',
+  15: 'CH.07 — 章節開始', 16: 'CH.07 常用藥物特性比較',
+  17: 'CH.08 — 章節開始', 18: 'CH.08 心血管系統影響',
+  19: 'CH.09 — 章節開始', 20: 'CH.09 呼吸系統影響',
+  21: 'CH.10 — 章節開始', 22: 'CH.10 腦神經與顱內壓影響',
+  23: 'CH.11 — 章節開始', 24: 'CH.11 惡性高熱 — 病生理',
+  25: 'CH.11 惡性高熱 — 緊急處置',
+  26: 'CH.12 — 章節開始', 27: 'CH.12 藥物毒性與注意事項',
+  28: '臨床重點整理', 29: '快速參考：關鍵數值', 30: '課程總結'
+};
+
+// Chapter → first slide
+const CHAPTER_SLIDE = {
+  'ch-cover': 1, 'ch-01': 3, 'ch-02': 5, 'ch-03': 7, 'ch-04': 9,
+  'ch-05': 11, 'ch-06': 13, 'ch-07': 15, 'ch-08': 17, 'ch-09': 19,
+  'ch-10': 21, 'ch-11': 23, 'ch-12': 26
+};
+
+const QUIZ_DATA = [
+  {
+    question: "根據投影片內容，全身麻醉通常可以分為哪三個階段？",
+    options: [
+      { text: "誘導 (Induction)、維持 (Maintenance)、甦醒 (Emergence)", correct: true, rationale: "投影片明確指出全身麻醉分為誘導、維持與甦醒三個階段。" },
+      { text: "術前準備 (Pre-op)、術中監控 (Intra-op)、術後恢復 (Post-op)", correct: false, rationale: "這描述的是整個手術過程的時序，而非全身麻醉本身的技術階段。" },
+      { text: "鎮靜 (Sedation)、止痛 (Analgesia)、肌肉鬆弛 (Muscle relaxation)", correct: false, rationale: "這是全身麻醉的組成要素，而非臨床分期階段。" },
+      { text: "給藥 (Administration)、分佈 (Distribution)、代謝 (Metabolism)", correct: false, rationale: "這描述的是藥物動力學的過程，而非麻醉的臨床分期。" }
+    ],
+    hint: "請回想臨床麻醉學投影片中關於一般麻醉分類的描述。",
+    slideRef: 4
+  },
+  {
+    question: "下列哪一項因素會導致吸入氣體濃度 ($F_{I}$) 較快接近新鮮氣體流量 ($FGF$) 的設定值？",
+    options: [
+      { text: "新鮮氣體流量 ($FGF$) $\\uparrow$", correct: true, rationale: "增加新鮮氣體流量可以補償呼吸迴路中的體積，使 $F_{I}$ 更快達到平衡。" },
+      { text: "呼吸系統的容積 ($Volume$) $\\uparrow$", correct: false, rationale: "呼吸迴路容積越大，麻醉藥物被稀釋得越多，達到預期濃度所需時間越長。" },
+      { text: "麻醉機或呼吸迴路的吸收量 $\\uparrow$", correct: false, rationale: "若機器吸收過多藥物，會減少進入病人的有效濃度，延遲達到平衡的時間。" },
+      { text: "肺泡通氣量 ($Ventilation$) $\\downarrow$", correct: false, rationale: "通氣量減少會減緩肺泡與血液間的交換，而非影響 $F_{I}$ 與 $FGF$ 的關係。" }
+    ],
+    hint: "考慮新鮮氣體流量與系統容積對濃度變化的影響。",
+    slideRef: 6
+  },
+  {
+    question: "當吸入性麻醉劑的血氣分配係數 (Blood/gas coefficient) $\\uparrow$ 時，對麻醉誘導速度有何影響？",
+    options: [
+      { text: "誘導速度會變慢", correct: true, rationale: "高溶解度的藥物會被血液大量吸收，導致肺泡分壓上升緩慢，進而使腦部濃度上升變慢。" },
+      { text: "誘導速度會變快", correct: false, rationale: "這是常見的誤解，實際上高溶解度會成為藥物的「緩衝池」，阻礙腦部分壓的快速建立。" },
+      { text: "誘導速度不受影響", correct: false, rationale: "血氣分配係數是決定誘導速度最關鍵的藥理參數之一。" },
+      { text: "僅對小兒患者的誘導速度有影響", correct: false, rationale: "藥物的溶解度特性在所有患者身上遵循相同的物理化學原則。" }
+    ],
+    hint: "高溶解度的藥物是否會導致肺泡分壓上升較慢？",
+    slideRef: 10
+  },
+  {
+    question: "心輸出量 ($CO$) 的變化如何影響吸入性麻醉劑的誘導速度？",
+    options: [
+      { text: "$CO$ $\\uparrow$ 會導致麻醉誘導變慢", correct: true, rationale: "心輸出量增加會帶走更多肺泡中的藥物，降低肺泡濃度，進而延緩麻醉誘導。" },
+      { text: "$CO$ $\\uparrow$ 會導致麻醉誘導變快", correct: false, rationale: "雖然循環變快，但因為肺泡藥物被快速移除，導致其濃度上升變慢，反而變遲鈍。" },
+      { text: "$CO$ $\\downarrow$ 可能導致麻醉藥物過量", correct: false, rationale: "雖然這在臨床上是正確的危險因素，但選項描述的是 $CO$ 增加的效果。" },
+      { text: "$CO$ 對不溶性麻醉劑的影響非常顯著", correct: false, rationale: "投影片提到 $CO$ 對不溶性麻醉劑的影響較不顯著。" }
+    ],
+    hint: "思考血液從肺泡帶走藥物的量如何影響肺泡濃度。",
+    slideRef: 6
+  },
+  {
+    question: "根據組織灌流與溶解度的分類，下列哪一類組織群會最先達到麻醉藥物的平衡狀態 (Steady state)？",
+    options: [
+      { text: "血管豐富組織群 (Vessel-rich group)", correct: true, rationale: "該組織群灌流量最高，佔心輸出量的 $75\\%$，能最快與動脈分壓達成平衡。" },
+      { text: "肌肉組織群 (Muscle group)", correct: false, rationale: "肌肉組織灌流相對較低且體積大，通常需要數小時才能達到平衡。" },
+      { text: "脂肪組織群 (Fat group)", correct: false, rationale: "脂肪對麻醉藥溶解度極高，且灌流極低，可能需要數天才能達到平衡。" },
+      { text: "貧血管組織群 (Vessel-poor group)", correct: false, rationale: "此類組織幾乎不參與藥物的動態交換過程。" }
+    ],
+    hint: "哪種組織獲得的血液供應比例最高？",
+    slideRef: 6
+  },
+  {
+    question: "關於濃縮效應 (Concentration effect) 的敘述，下列何者正確？",
+    options: [
+      { text: "吸入濃度 $\\uparrow$ 會使肺泡濃度上升的速度不成比例地加快", correct: true, rationale: "高濃度的吸入氣體會因大量吸收而造成容積縮小，產生吸入輔助作用，加速濃度提升。" },
+      { text: "此效應在低濃度吸入時最為明顯", correct: false, rationale: "濃縮效應主要發生在高濃度給予時，例如 $N_{2}O$ 的使用。" },
+      { text: "高濃度吸入會導致肺泡塌陷 (Alveolar collapse)", correct: false, rationale: "生理上會透過增加進氣流量來避免，而非造成塌陷。" },
+      { text: "僅影響 $N_{2}O$ 本身的吸收，不影響其他共用藥物", correct: false, rationale: "濃縮效應也與「第二氣體效應」相關，會影響同時給予的揮發性麻醉劑。" }
+    ],
+    hint: "回想投影片中 $20\\%$ 與 $80\\%$ 濃度對比的計算範例。",
+    slideRef: 8
+  },
+  {
+    question: "何謂「第二氣體效應 (Second gas effect)」？",
+    options: [
+      { text: "高濃度的 $N_{2}O$ 被吸收後，會加速同時給予的揮發性麻醉劑上升速度", correct: true, rationale: "由於 $N_{2}O$ 被大量且快速吸收，會產生一種「吸力」或體積縮小效應，帶動第二種氣體的吸收。" },
+      { text: "使用第二種麻醉劑來抵消第一種藥物的副作用", correct: false, rationale: "這屬於藥物拮抗或輔助作用，而非藥物動力學中的第二氣體效應。" },
+      { text: "指麻醉藥物在體內重新分佈到第二層組織的過程", correct: false, rationale: "這描述的是藥物分佈 (Redistribution)，而非氣體吸收效應。" },
+      { text: "吸入麻醉劑被代謝後產生的二次毒性反應", correct: false, rationale: "第二氣體效應是關於濃度上升的動力學現象，與代謝毒性無關。" }
+    ],
+    hint: "這與 $N_{2}O$ 高濃度使用時對肺泡內其他氣體的影響有關。",
+    slideRef: 8
+  },
+  {
+    question: "在通氣/灌流不全 (V/Q Mismatch) 的情況下，對哪類麻醉劑的誘導速度影響最顯著？",
+    options: [
+      { text: "低溶解度 (不溶性) 麻醉劑，如 $N_{2}O$", correct: true, rationale: "V/Q Mismatch 對不溶性麻醉劑的誘導速度影響比對高溶解度麻醉劑更明顯。" },
+      { text: "高溶解度麻醉劑，如 Halothane", correct: false, rationale: "高溶解度藥物本身誘導就慢，V/Q Mismatch 造成的延遲比例相對較小。" },
+      { text: "支氣管內插管不會影響誘導速度", correct: false, rationale: "支氣管內插管會造成嚴重的通氣不全，顯著延緩誘導。" },
+      { text: "僅右到左的分流 (Shunt) 有影響", correct: false, rationale: "通氣與灌流的任何失衡皆會產生影響，不限於分流。" }
+    ],
+    hint: "回想投影片中關於不溶性氣體受到分流影響的描述。",
+    slideRef: 8
+  },
+  {
+    question: "如何預防停止使用 $N_{2}O$ 後可能產生的擴散性低氧 (Diffusion hypoxia)？",
+    options: [
+      { text: "停藥後給予 $100\\%$ $O_{2}$ 持續 $5$ 至 $10$ 分鐘", correct: true, rationale: "由於 $N_{2}O$ 從血液擴散回肺泡的速度極快，會稀釋氧氣，因此需要純氧預防。" },
+      { text: "手術結束前增加 $CO_{2}$ 的吸入量", correct: false, rationale: "增加 $CO_{2}$ 不僅無法預防低氧，還可能導致高碳酸血症。" },
+      { text: "降低新鮮氣體流量 ($FGF$)", correct: false, rationale: "低流量會減緩藥物排除，反而增加低氧的風險與甦醒時間。" },
+      { text: "在手術全程都使用低濃度的 $N_{2}O$", correct: false, rationale: "這僅能減輕嚴重程度，無法替代停藥後的氧氣支持預防措施。" }
+    ],
+    hint: "擴散性低氧是因為大量 $N_{2}O$ 稀釋了肺泡內的氧氣濃度。",
+    slideRef: 8
+  },
+  {
+    question: "吸入性麻醉劑的生物轉化 (Biotransformation) 主要涉及哪一類同功酶？",
+    options: [
+      { text: "$CYP2E1$", correct: true, rationale: "投影片中特別標註了 $CYP$ 群中的 $CYP2E1$ 是主要參與代謝的酶。" },
+      { text: "$CYP3A4$", correct: false, rationale: "雖然 $CYP3A4$ 參與多種藥物代謝，但非吸入性麻醉劑的主要特定代謝酶。" },
+      { text: "單胺氧化酶 ($MAO$)", correct: false, rationale: "$MAO$ 主要與兒茶酚胺的代謝有關，不涉及麻醉氣體代謝。" },
+      { text: "乙醯膽鹼酯酶 ($AChE$)", correct: false, rationale: "$AChE$ 負責分解神經傳導物質，與肝臟細胞色素代謝系統無關。" }
+    ],
+    hint: "請注意投影片中帶有星號 (**) 的酶名稱。",
+    slideRef: 27
+  },
+  {
+    question: "$N_{2}O$ 與 Xenon 產生的麻醉效應主要是透過抑制下列哪種受體？",
+    options: [
+      { text: "$NMDA$ 受體", correct: true, rationale: "投影片指出 $N_{2}O$ 和氙氣會抑制 $NMDA$ 受體，這與揮發性麻醉劑的作用機制不同。" },
+      { text: "$GABA$ 受體", correct: false, rationale: "大多數揮發性麻醉劑作用於 $GABA$ 受體，但 $N_{2}O$ 的主機制是 $NMDA$ 抑制。" },
+      { text: "多巴胺受體", correct: false, rationale: "多巴胺受體主要與情緒和獎賞系統相關，非麻醉劑的主作用位點。" },
+      { text: "腎上腺素受體", correct: false, rationale: "麻醉劑可能間接影響交感神經，但主要中樞作用並非透過腎上腺素受體。" }
+    ],
+    hint: "回想藥物效力學中特別提到 $N_{2}O$ 的特殊機制。",
+    slideRef: 4
+  },
+  {
+    question: "研究指出，最小肺泡濃度 ($MAC$) 的效力主要取決於麻醉劑在何處產生的影響？",
+    options: [
+      { text: "脊髓 (Spinal cord)", correct: true, rationale: "一項對大鼠的研究顯示，移除大腦皮質不影響 $MAC$，證明其效力與脊髓作用相關。" },
+      { text: "大腦皮質 (Cerebral cortex)", correct: false, rationale: "大腦皮質雖然與意識相關，但 $MAC$ 的「痛覺反應抑制」指標主要受脊髓控制。" },
+      { text: "海馬迴 (Hippocampus)", correct: false, rationale: "海馬迴主要與記憶 (Amnesia) 相關，而非對疼痛退縮反應的抑制。" },
+      { text: "網狀啟動系統 (RAS)", correct: false, rationale: "$RAS$ 與甦醒與睡眠狀態相關，非 $MAC$ 定義中的運動反應指標主要部位。" }
+    ],
+    hint: "考慮大鼠實驗中移除皮質後 $MAC$ 是否發生改變。",
+    slideRef: 12
+  },
+  {
+    question: "吸入性麻醉劑對嬰兒大腦的神經毒性主要表現為何？",
+    options: [
+      { text: "影響突觸 (Synapses) 的發育與消除，並促進細胞凋亡", correct: true, rationale: "投影片指出麻醉劑會改變鈣離子衡定機制，進而促進凋亡並干擾突觸發育。" },
+      { text: "導致大腦血液灌流量永久減少", correct: false, rationale: "麻醉劑通常會增加腦血流量，毒性機制主要在細胞層級而非血管層級。" },
+      { text: "引起嚴重的腦膜發炎反應", correct: false, rationale: "神經毒性主要與神經元發育和凋亡機制有關，而非發炎。" },
+      { text: "導致神經纖維髓鞘化過度加速", correct: false, rationale: "吸入性麻醉劑通常被認為可能干擾或損傷發育，而非加速正常生理過程。" }
+    ],
+    hint: "請回想關於細胞 $Ca^{2+}$ 衡定與細胞凋亡 (Apoptosis) 的內容。",
+    slideRef: 27
+  }
+];
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+
+let currentSlide = 1;
+let answeredCount = 0;
+let correctCount = 0;
+let ytEditOpen = false;
+
+// ─── SLIDE LOGIC ────────────────────────────────────────────────────────────
+
+function buildDots() {
+  const track = document.getElementById('dotTrack');
+  track.innerHTML = '';
+  const chapterStarts = new Set([1,3,5,7,9,11,13,15,17,19,21,23,26,28]);
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const d = document.createElement('button');
+    d.className = 'slide-dot' + (i === 1 ? ' active' : '') + (chapterStarts.has(i) ? ' chapter-start' : '');
+    d.title = SLIDE_TITLES[i] || ('投影片 ' + i);
+    d.onclick = () => goToSlide(i);
+    d.dataset.slide = i;
+    track.appendChild(d);
+  }
+}
+
+function updateSlide() {
+  const n = currentSlide;
+  const pad = String(n).padStart(3, '0');
+  document.getElementById('slideImg').src = 'slides/slide_' + pad + '.jpg';
+  document.getElementById('slideTitle').textContent = SLIDE_TITLES[n] || '投影片 ' + n;
+  document.getElementById('slideCounter').textContent = '第 ' + n + ' / ' + TOTAL_SLIDES + ' 張';
+  document.getElementById('btnPrev').disabled = n === 1;
+  document.getElementById('btnNext').disabled = n === TOTAL_SLIDES;
+
+  // dots
+  document.querySelectorAll('.slide-dot').forEach(d => {
+    d.classList.toggle('active', parseInt(d.dataset.slide) === n);
+  });
+  // scroll dot into view
+  const activeDot = document.querySelector('.slide-dot.active');
+  if (activeDot) activeDot.scrollIntoView({ inline: 'center', block: 'nearest' });
+
+  updateInfographic(n);
+  updateSidebarActive(n);
+  updateProgress();
+}
+
+function updateInfographic(n) {
+  const infIdx = INFOGRAPHIC_MAP[n];
+  const wrap = document.getElementById('infographicWrap');
+  const label = document.getElementById('infographicLabel');
+  if (infIdx) {
+    const fname = INFOGRAPHIC_FILES[infIdx];
+    wrap.innerHTML = '<img src="' + fname + '" alt="' + INFOGRAPHIC_LABELS[infIdx] + '" loading="lazy"><p class="infographic-caption">📌 ' + INFOGRAPHIC_LABELS[infIdx] + '</p>';
+    label.textContent = INFOGRAPHIC_LABELS[infIdx];
+    document.getElementById('infographicCard').style.display = '';
+  } else {
+    wrap.innerHTML = '<div class="no-infographic">此投影片為章節封面或總結頁，無對應資訊圖表。</div>';
+    label.textContent = '';
+  }
+}
+
+function updateSidebarActive(n) {
+  const chMap = [
+    ['ch-cover', [1,2]],
+    ['ch-01', [3,4]],
+    ['ch-02', [5,6]],
+    ['ch-03', [7,8]],
+    ['ch-04', [9,10]],
+    ['ch-05', [11,12]],
+    ['ch-06', [13,14]],
+    ['ch-07', [15,16]],
+    ['ch-08', [17,18]],
+    ['ch-09', [19,20]],
+    ['ch-10', [21,22]],
+    ['ch-11', [23,24,25]],
+    ['ch-12', [26,27,28,29,30]]
+  ];
+  document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+  for (const [id, slides] of chMap) {
+    if (slides.includes(n)) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+      break;
+    }
+  }
+}
+
+function updateProgress() {
+  const pct = Math.round((currentSlide / TOTAL_SLIDES) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+}
+
+function prevSlide() {
+  if (currentSlide > 1) { currentSlide--; updateSlide(); }
+}
+function nextSlide() {
+  if (currentSlide < TOTAL_SLIDES) { currentSlide++; updateSlide(); }
+}
+function goToSlide(n) {
+  currentSlide = n;
+  updateSlide();
+  document.querySelector('.slide-img-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') prevSlide();
+  if (e.key === 'ArrowRight') nextSlide();
+});
+
+// ─── YOUTUBE ────────────────────────────────────────────────────────────────
+
+function extractYTId(url) {
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+let currentYTId = 'VHF8NnXYPtM';
+
+function openYT() {
+  window.open('https://www.youtube.com/watch?v=' + currentYTId, '_blank');
+}
+
+function toggleYTEdit() {
+  ytEditOpen = !ytEditOpen;
+  const inp = document.getElementById('ytInput');
+  const btn = document.getElementById('ytSaveBtn');
+  inp.classList.toggle('show', ytEditOpen);
+  btn.style.display = ytEditOpen ? '' : 'none';
+  if (ytEditOpen) inp.focus();
+}
+
+function loadYT() {
+  const url = document.getElementById('ytInput').value.trim();
+  const id = extractYTId(url);
+  if (!id) { alert('請輸入有效的 YouTube 連結'); return; }
+  currentYTId = id;
+  document.getElementById('ytThumb').src = 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg';
+  localStorage.setItem('yt-video-id', id);
+  toggleYTEdit();
+  document.getElementById('ytInput').value = '';
+}
+
+// ─── QUIZ ────────────────────────────────────────────────────────────────────
+
+function buildQuiz() {
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  answeredCount = 0;
+  correctCount = 0;
+  document.getElementById('resultBox').classList.remove('show');
+
+  QUIZ_DATA.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'qcard-' + qi;
+
+    const labels = ['A', 'B', 'C', 'D'];
+    const optHtml = q.options.map((opt, oi) =>
+      `<button class="option-btn" id="opt-${qi}-${oi}" onclick="selectOption(${qi},${oi})">
+        <span class="option-label">${labels[oi]}</span>
+        <span class="option-text">${opt.text}</span>
+      </button>`
+    ).join('');
+
+    card.innerHTML = `
+      <div class="question-header">
+        <span class="question-number">${qi + 1}</span>
+        <div class="question-text">${q.question}</div>
+        <div class="question-hint">💡 ${q.hint}</div>
+      </div>
+      <div class="options-grid">${optHtml}</div>
+      <div class="question-footer">
+        <button class="btn-rationale" id="rationale-btn-${qi}" onclick="toggleRationale(${qi})">📖 查看詳解</button>
+        <span class="slide-ref" id="slide-ref-${qi}" onclick="goToSlide(${q.slideRef}); return false;" style="cursor:pointer">
+          📌 詳見第 ${q.slideRef} 張投影片
+        </span>
+      </div>
+      <div class="rationale-box" id="rationale-box-${qi}"></div>`;
+
+    container.appendChild(card);
+  });
+
+  // Typeset MathJax after building DOM
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([container]);
+  }
+}
+
+function selectOption(qi, oi) {
+  const q = QUIZ_DATA[qi];
+  const card = document.getElementById('qcard-' + qi);
+  if (card.dataset.answered) return;
+  card.dataset.answered = '1';
+  answeredCount++;
+
+  const isCorrect = q.options[oi].correct;
+  if (isCorrect) correctCount++;
+
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+
+  // Style all buttons
+  q.options.forEach((opt, i) => {
+    const btn = document.getElementById('opt-' + qi + '-' + i);
+    btn.disabled = true;
+    if (i === oi && isCorrect) btn.classList.add('correct');
+    else if (i === oi && !isCorrect) btn.classList.add('wrong');
+    else if (opt.correct) btn.classList.add('reveal-correct');
+  });
+
+  // Show rationale button + slide ref
+  document.getElementById('rationale-btn-' + qi).classList.add('show');
+  document.getElementById('slide-ref-' + qi).classList.add('show');
+
+  // Auto-fill rationale box
+  const rBox = document.getElementById('rationale-box-' + qi);
+  rBox.className = 'rationale-box ' + (isCorrect ? 'correct-bg' : '');
+  rBox.innerHTML = '<strong>' + (isCorrect ? '✅ 答對了！' : '❌ 答錯了') + '</strong><br>' + q.options[oi].rationale;
+
+  if (answeredCount === QUIZ_DATA.length) showResult();
+}
+
+function toggleRationale(qi) {
+  const box = document.getElementById('rationale-box-' + qi);
+  const btn = document.getElementById('rationale-btn-' + qi);
+  const showing = box.classList.toggle('show');
+  btn.textContent = showing ? '📖 收起詳解' : '📖 查看詳解';
+}
+
+function showResult() {
+  const pct = Math.round((correctCount / QUIZ_DATA.length) * 100);
+  let grade;
+  if (pct >= 90) grade = '🏆 優秀！臨床應用能力強';
+  else if (pct >= 70) grade = '👍 良好，繼續加油！';
+  else if (pct >= 60) grade = '📘 及格，建議複習重點章節';
+  else grade = '📚 需加強，請重新複習投影片';
+
+  document.getElementById('resultScore').textContent = correctCount + ' / ' + QUIZ_DATA.length + '（' + pct + '%）';
+  document.getElementById('resultGrade').textContent = grade;
+  document.getElementById('resultBox').classList.add('show');
+  document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function restartQuiz() {
+  buildQuiz();
+  document.getElementById('quiz-anchor').scrollIntoView({ behavior: 'smooth' });
+}
+
+function scrollToQuiz() {
+  document.getElementById('quiz-anchor').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+
+buildDots();
+updateSlide();
+buildQuiz();
+
+// Restore saved YouTube video
+const savedYT = localStorage.getItem('yt-video-id');
+if (savedYT) {
+  currentYTId = savedYT;
+  document.getElementById('ytThumb').src = 'https://img.youtube.com/vi/' + savedYT + '/maxresdefault.jpg';
+}
+</script>
+</body>
+</html>
