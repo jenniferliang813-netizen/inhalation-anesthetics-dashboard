@@ -578,147 +578,114 @@ const CHAPTER_SLIDE = {
 
 const QUIZ_DATA = [
   {
-    question: "根據投影片內容，全身麻醉通常可以分為哪三個階段？",
+    question: "哪種吸入性麻醉藥的「血／氣分配係數」（Blood/Gas Partition Coefficient）最低，因此在臨床上具有最快的誘導與甦醒速度？",
     options: [
-      { text: "誘導 (Induction)、維持 (Maintenance)、甦醒 (Emergence)", correct: true, rationale: "投影片明確指出全身麻醉分為誘導、維持與甦醒三個階段。" },
-      { text: "術前準備 (Pre-op)、術中監控 (Intra-op)、術後恢復 (Post-op)", correct: false, rationale: "這描述的是整個手術過程的時序，而非全身麻醉本身的技術階段。" },
-      { text: "鎮靜 (Sedation)、止痛 (Analgesia)、肌肉鬆弛 (Muscle relaxation)", correct: false, rationale: "這是全身麻醉的組成要素，而非臨床分期階段。" },
-      { text: "給藥 (Administration)、分佈 (Distribution)、代謝 (Metabolism)", correct: false, rationale: "這描述的是藥物動力學的過程，而非麻醉的臨床分期。" }
+      { text: "Desflurane", correct: true, rationale: "Desflurane 的係數約為 $0.42$ 至 $0.45$，是目前常用藥物中溶解度最低的，使其在肺泡與血液間的平衡極快。" },
+      { text: "Sevoflurane", correct: false, rationale: "Sevoflurane 的係數約為 $0.65$，雖然誘導速度也很快，但仍略慢於 Desflurane。" },
+      { text: "Isoflurane", correct: false, rationale: "Isoflurane 的係數約為 $1.4$，屬於中速誘導藥物，在組織中的蓄積量較多，甦醒較慢。" },
+      { text: "Halothane", correct: false, rationale: "Halothane 的係數高達 $2.4$，高溶解度會導致藥物大量進入血液而非留在肺泡，使其誘導速度最慢。" }
     ],
-    hint: "請回想臨床麻醉學投影片中關於一般麻醉分類的描述。",
-    slideRef: 4
-  },
-  {
-    question: "下列哪一項因素會導致吸入氣體濃度 ($F_{I}$) 較快接近新鮮氣體流量 ($FGF$) 的設定值？",
-    options: [
-      { text: "新鮮氣體流量 ($FGF$) $\\uparrow$", correct: true, rationale: "增加新鮮氣體流量可以補償呼吸迴路中的體積，使 $F_{I}$ 更快達到平衡。" },
-      { text: "呼吸系統的容積 ($Volume$) $\\uparrow$", correct: false, rationale: "呼吸迴路容積越大，麻醉藥物被稀釋得越多，達到預期濃度所需時間越長。" },
-      { text: "麻醉機或呼吸迴路的吸收量 $\\uparrow$", correct: false, rationale: "若機器吸收過多藥物，會減少進入病人的有效濃度，延遲達到平衡的時間。" },
-      { text: "肺泡通氣量 ($Ventilation$) $\\downarrow$", correct: false, rationale: "通氣量減少會減緩肺泡與血液間的交換，而非影響 $F_{I}$ 與 $FGF$ 的關係。" }
-    ],
-    hint: "考慮新鮮氣體流量與系統容積對濃度變化的影響。",
-    slideRef: 6
-  },
-  {
-    question: "當吸入性麻醉劑的血氣分配係數 (Blood/gas coefficient) $\\uparrow$ 時，對麻醉誘導速度有何影響？",
-    options: [
-      { text: "誘導速度會變慢", correct: true, rationale: "高溶解度的藥物會被血液大量吸收，導致肺泡分壓上升緩慢，進而使腦部濃度上升變慢。" },
-      { text: "誘導速度會變快", correct: false, rationale: "這是常見的誤解，實際上高溶解度會成為藥物的「緩衝池」，阻礙腦部分壓的快速建立。" },
-      { text: "誘導速度不受影響", correct: false, rationale: "血氣分配係數是決定誘導速度最關鍵的藥理參數之一。" },
-      { text: "僅對小兒患者的誘導速度有影響", correct: false, rationale: "藥物的溶解度特性在所有患者身上遵循相同的物理化學原則。" }
-    ],
-    hint: "高溶解度的藥物是否會導致肺泡分壓上升較慢？",
+    hint: "數值越低代表在血液中的溶解度越小，藥物分壓上升越快。",
     slideRef: 10
   },
   {
-    question: "心輸出量 ($CO$) 的變化如何影響吸入性麻醉劑的誘導速度？",
+    question: "關於「最低肺泡濃度」（MAC）的臨床意義，下列敘述何者正確？",
     options: [
-      { text: "$CO$ $\\uparrow$ 會導致麻醉誘導變慢", correct: true, rationale: "心輸出量增加會帶走更多肺泡中的藥物，降低肺泡濃度，進而延緩麻醉誘導。" },
-      { text: "$CO$ $\\uparrow$ 會導致麻醉誘導變快", correct: false, rationale: "雖然循環變快，但因為肺泡藥物被快速移除，導致其濃度上升變慢，反而變遲鈍。" },
-      { text: "$CO$ $\\downarrow$ 可能導致麻醉藥物過量", correct: false, rationale: "雖然這在臨床上是正確的危險因素，但選項描述的是 $CO$ 增加的效果。" },
-      { text: "$CO$ 對不溶性麻醉劑的影響非常顯著", correct: false, rationale: "投影片提到 $CO$ 對不溶性麻醉劑的影響較不顯著。" }
+      { text: "係指使 $50\\%$ 的受試者在切皮等外科刺激時無體動反應的濃度", correct: true, rationale: "MAC 是藥理學中 $ED_{50}$ 的概念，用於比較不同吸入麻醉藥的效能。" },
+      { text: "係指使 $95\\%$ 的病人能安全插管且無不適反應的濃度", correct: false, rationale: "預防 $95\\%$ 病人出現反應的濃度通常是指 $1.3$ MAC。" },
+      { text: "MAC 數值越高，代表該麻醉藥的效能（Potency）越強", correct: false, rationale: "效能與 MAC 成反比，MAC 越低表示只需極低濃度即可達到麻醉效果，效能越強。" },
+      { text: "係指病人從麻醉中完全清醒時所需的最高肺泡濃度", correct: false, rationale: "清醒時的濃度通常稱為 MAC awake，約為 $0.3$ 至 $0.4$ MAC。" }
     ],
-    hint: "思考血液從肺泡帶走藥物的量如何影響肺泡濃度。",
-    slideRef: 6
-  },
-  {
-    question: "根據組織灌流與溶解度的分類，下列哪一類組織群會最先達到麻醉藥物的平衡狀態 (Steady state)？",
-    options: [
-      { text: "血管豐富組織群 (Vessel-rich group)", correct: true, rationale: "該組織群灌流量最高，佔心輸出量的 $75\\%$，能最快與動脈分壓達成平衡。" },
-      { text: "肌肉組織群 (Muscle group)", correct: false, rationale: "肌肉組織灌流相對較低且體積大，通常需要數小時才能達到平衡。" },
-      { text: "脂肪組織群 (Fat group)", correct: false, rationale: "脂肪對麻醉藥溶解度極高，且灌流極低，可能需要數天才能達到平衡。" },
-      { text: "貧血管組織群 (Vessel-poor group)", correct: false, rationale: "此類組織幾乎不參與藥物的動態交換過程。" }
-    ],
-    hint: "哪種組織獲得的血液供應比例最高？",
-    slideRef: 6
-  },
-  {
-    question: "關於濃縮效應 (Concentration effect) 的敘述，下列何者正確？",
-    options: [
-      { text: "吸入濃度 $\\uparrow$ 會使肺泡濃度上升的速度不成比例地加快", correct: true, rationale: "高濃度的吸入氣體會因大量吸收而造成容積縮小，產生吸入輔助作用，加速濃度提升。" },
-      { text: "此效應在低濃度吸入時最為明顯", correct: false, rationale: "濃縮效應主要發生在高濃度給予時，例如 $N_{2}O$ 的使用。" },
-      { text: "高濃度吸入會導致肺泡塌陷 (Alveolar collapse)", correct: false, rationale: "生理上會透過增加進氣流量來避免，而非造成塌陷。" },
-      { text: "僅影響 $N_{2}O$ 本身的吸收，不影響其他共用藥物", correct: false, rationale: "濃縮效應也與「第二氣體效應」相關，會影響同時給予的揮發性麻醉劑。" }
-    ],
-    hint: "回想投影片中 $20\\%$ 與 $80\\%$ 濃度對比的計算範例。",
-    slideRef: 8
-  },
-  {
-    question: "何謂「第二氣體效應 (Second gas effect)」？",
-    options: [
-      { text: "高濃度的 $N_{2}O$ 被吸收後，會加速同時給予的揮發性麻醉劑上升速度", correct: true, rationale: "由於 $N_{2}O$ 被大量且快速吸收，會產生一種「吸力」或體積縮小效應，帶動第二種氣體的吸收。" },
-      { text: "使用第二種麻醉劑來抵消第一種藥物的副作用", correct: false, rationale: "這屬於藥物拮抗或輔助作用，而非藥物動力學中的第二氣體效應。" },
-      { text: "指麻醉藥物在體內重新分佈到第二層組織的過程", correct: false, rationale: "這描述的是藥物分佈 (Redistribution)，而非氣體吸收效應。" },
-      { text: "吸入麻醉劑被代謝後產生的二次毒性反應", correct: false, rationale: "第二氣體效應是關於濃度上升的動力學現象，與代謝毒性無關。" }
-    ],
-    hint: "這與 $N_{2}O$ 高濃度使用時對肺泡內其他氣體的影響有關。",
-    slideRef: 8
-  },
-  {
-    question: "在通氣/灌流不全 (V/Q Mismatch) 的情況下，對哪類麻醉劑的誘導速度影響最顯著？",
-    options: [
-      { text: "低溶解度 (不溶性) 麻醉劑，如 $N_{2}O$", correct: true, rationale: "V/Q Mismatch 對不溶性麻醉劑的誘導速度影響比對高溶解度麻醉劑更明顯。" },
-      { text: "高溶解度麻醉劑，如 Halothane", correct: false, rationale: "高溶解度藥物本身誘導就慢，V/Q Mismatch 造成的延遲比例相對較小。" },
-      { text: "支氣管內插管不會影響誘導速度", correct: false, rationale: "支氣管內插管會造成嚴重的通氣不全，顯著延緩誘導。" },
-      { text: "僅右到左的分流 (Shunt) 有影響", correct: false, rationale: "通氣與灌流的任何失衡皆會產生影響，不限於分流。" }
-    ],
-    hint: "回想投影片中關於不溶性氣體受到分流影響的描述。",
-    slideRef: 8
-  },
-  {
-    question: "如何預防停止使用 $N_{2}O$ 後可能產生的擴散性低氧 (Diffusion hypoxia)？",
-    options: [
-      { text: "停藥後給予 $100\\%$ $O_{2}$ 持續 $5$ 至 $10$ 分鐘", correct: true, rationale: "由於 $N_{2}O$ 從血液擴散回肺泡的速度極快，會稀釋氧氣，因此需要純氧預防。" },
-      { text: "手術結束前增加 $CO_{2}$ 的吸入量", correct: false, rationale: "增加 $CO_{2}$ 不僅無法預防低氧，還可能導致高碳酸血症。" },
-      { text: "降低新鮮氣體流量 ($FGF$)", correct: false, rationale: "低流量會減緩藥物排除，反而增加低氧的風險與甦醒時間。" },
-      { text: "在手術全程都使用低濃度的 $N_{2}O$", correct: false, rationale: "這僅能減輕嚴重程度，無法替代停藥後的氧氣支持預防措施。" }
-    ],
-    hint: "擴散性低氧是因為大量 $N_{2}O$ 稀釋了肺泡內的氧氣濃度。",
-    slideRef: 8
-  },
-  {
-    question: "吸入性麻醉劑的生物轉化 (Biotransformation) 主要涉及哪一類同功酶？",
-    options: [
-      { text: "$CYP2E1$", correct: true, rationale: "投影片中特別標註了 $CYP$ 群中的 $CYP2E1$ 是主要參與代謝的酶。" },
-      { text: "$CYP3A4$", correct: false, rationale: "雖然 $CYP3A4$ 參與多種藥物代謝，但非吸入性麻醉劑的主要特定代謝酶。" },
-      { text: "單胺氧化酶 ($MAO$)", correct: false, rationale: "$MAO$ 主要與兒茶酚胺的代謝有關，不涉及麻醉氣體代謝。" },
-      { text: "乙醯膽鹼酯酶 ($AChE$)", correct: false, rationale: "$AChE$ 負責分解神經傳導物質，與肝臟細胞色素代謝系統無關。" }
-    ],
-    hint: "請注意投影片中帶有星號 (**) 的酶名稱。",
-    slideRef: 27
-  },
-  {
-    question: "$N_{2}O$ 與 Xenon 產生的麻醉效應主要是透過抑制下列哪種受體？",
-    options: [
-      { text: "$NMDA$ 受體", correct: true, rationale: "投影片指出 $N_{2}O$ 和氙氣會抑制 $NMDA$ 受體，這與揮發性麻醉劑的作用機制不同。" },
-      { text: "$GABA$ 受體", correct: false, rationale: "大多數揮發性麻醉劑作用於 $GABA$ 受體，但 $N_{2}O$ 的主機制是 $NMDA$ 抑制。" },
-      { text: "多巴胺受體", correct: false, rationale: "多巴胺受體主要與情緒和獎賞系統相關，非麻醉劑的主作用位點。" },
-      { text: "腎上腺素受體", correct: false, rationale: "麻醉劑可能間接影響交感神經，但主要中樞作用並非透過腎上腺素受體。" }
-    ],
-    hint: "回想藥物效力學中特別提到 $N_{2}O$ 的特殊機制。",
-    slideRef: 4
-  },
-  {
-    question: "研究指出，最小肺泡濃度 ($MAC$) 的效力主要取決於麻醉劑在何處產生的影響？",
-    options: [
-      { text: "脊髓 (Spinal cord)", correct: true, rationale: "一項對大鼠的研究顯示，移除大腦皮質不影響 $MAC$，證明其效力與脊髓作用相關。" },
-      { text: "大腦皮質 (Cerebral cortex)", correct: false, rationale: "大腦皮質雖然與意識相關，但 $MAC$ 的「痛覺反應抑制」指標主要受脊髓控制。" },
-      { text: "海馬迴 (Hippocampus)", correct: false, rationale: "海馬迴主要與記憶 (Amnesia) 相關，而非對疼痛退縮反應的抑制。" },
-      { text: "網狀啟動系統 (RAS)", correct: false, rationale: "$RAS$ 與甦醒與睡眠狀態相關，非 $MAC$ 定義中的運動反應指標主要部位。" }
-    ],
-    hint: "考慮大鼠實驗中移除皮質後 $MAC$ 是否發生改變。",
+    hint: "這是一個代表半數有效劑量的標準化數值。",
     slideRef: 12
   },
   {
-    question: "吸入性麻醉劑對嬰兒大腦的神經毒性主要表現為何？",
+    question: "當病人的心輸出量（Cardiac Output）明顯降低（例如急性心衰竭或嚴重休克）時，對吸入性麻醉藥誘導速度的影響為何？",
     options: [
-      { text: "影響突觸 (Synapses) 的發育與消除，並促進細胞凋亡", correct: true, rationale: "投影片指出麻醉劑會改變鈣離子衡定機制，進而促進凋亡並干擾突觸發育。" },
-      { text: "導致大腦血液灌流量永久減少", correct: false, rationale: "麻醉劑通常會增加腦血流量，毒性機制主要在細胞層級而非血管層級。" },
-      { text: "引起嚴重的腦膜發炎反應", correct: false, rationale: "神經毒性主要與神經元發育和凋亡機制有關，而非發炎。" },
-      { text: "導致神經纖維髓鞘化過度加速", correct: false, rationale: "吸入性麻醉劑通常被認為可能干擾或損傷發育，而非加速正常生理過程。" }
+      { text: "肺部血流減少，導致肺泡濃度（$F_{A}$）上升變快，誘導變快", correct: true, rationale: "心輸出量降低時，血液帶走麻醉藥的速度變慢，肺泡內分壓能迅速與吸入分壓平衡，因此誘導需減量以防過深。" },
+      { text: "全身血流不足，導致藥物運輸至大腦速度變慢，誘導變慢", correct: false, rationale: "雖然循環時間可能延長，但肺泡濃度上升的速度優勢主導了誘導過程，使誘導反而變快。" },
+      { text: "心輸出量與肺泡濃度（$F_{A}$）的上升速度無直接關係", correct: false, rationale: "根據攝取公式，心輸出量是決定麻醉藥從肺泡移除率的關鍵因素之一。" },
+      { text: "肺部血流減少會使藥物吸收變多，誘導速度反而變慢", correct: false, rationale: "血流減少會使藥物攝取量減少，而非增加，這會導致肺泡內殘留藥物增加，加速濃度平衡。" }
     ],
-    hint: "請回想關於細胞 $Ca^{2+}$ 衡定與細胞凋亡 (Apoptosis) 的內容。",
-    slideRef: 27
+    hint: "想像血液是搬運藥物的車隊，當車隊變少時，留在車站（肺泡）的人會變多。",
+    slideRef: 8
+  },
+  {
+    question: "在小兒科門診手術中，Sevoflurane 比起 Desflurane 更常被用於吸入性誘導（Inhalation Induction），主要原因為何？",
+    options: [
+      { text: "Sevoflurane 對氣道刺激性低，較少引起咳嗽或喉痙攣", correct: true, rationale: "Sevoflurane 氣味溫和且具有支氣管擴張效果，不會像 Desflurane 一樣刺激呼吸道。" },
+      { text: "Sevoflurane 的誘導速度比 Desflurane 更快", correct: false, rationale: "事實上 Desflurane 的誘導速度理論上更快，但因強烈刺激性導致無法用於平穩誘導。" },
+      { text: "Sevoflurane 不會導致惡性高熱（Malignant Hyperthermia）", correct: false, rationale: "所有揮發性吸入麻醉藥（包括 Sevo, Des, Iso）都有可能觸發惡性高熱。" },
+      { text: "Sevoflurane 的效能較弱，安全性較高", correct: false, rationale: "Sevoflurane 的 MAC 約為 $2.0\\%$，效能確實比 Desflurane 強，但安全性主要是與其氣道刺激性有關。" }
+    ],
+    hint: "考慮到病人（尤其是小孩）吸入藥物時的舒適度與呼吸道保護反應。",
+    slideRef: 16
+  },
+  {
+    question: "臨床護理監測中，若發現快速調高 Desflurane 濃度後病人出現心跳顯著加快與血壓升高，這通常是由於：",
+    options: [
+      { text: "快速上升的藥物濃度激發了交感神經反射", correct: true, rationale: "Desflurane 會引起短暫的交感神經興奮，導致兒茶酚胺釋放，造成心率與血壓上升。" },
+      { text: "藥物直接抑制了迷走神經的活性", correct: false, rationale: "此反應主要是交感神經受刺激後的反射結果，而非單純的迷走神經抑制。" },
+      { text: "麻醉深度不足導致的疼痛反應", correct: false, rationale: "雖然疼痛也會導致心跳加快，但 Desflurane 特有的性質是即便在足夠麻醉深度下，快速調高濃度仍會引發此反應。" },
+      { text: "藥物引發的過敏性休克前兆", correct: false, rationale: "過敏反應通常伴隨血壓下降與皮疹，而非血壓上升。" }
+    ],
+    hint: "這種藥物具有特殊的交感刺激效應，特別是在濃度調整過快時。",
+    slideRef: 16
+  },
+  {
+    question: "吸入性麻醉藥對呼吸系統具有劑量依賴性的抑制作用，通常表現為：",
+    options: [
+      { text: "潮氣量（$TV$）下降，呼吸頻率（$RR$）代償性上升", correct: true, rationale: "麻醉藥會使呼吸變得淺而快，儘管頻率增加，但每分鐘通氣量（$MV$）整體仍是下降的。" },
+      { text: "潮氣量（$TV$）上升，呼吸頻率（$RR$）下降", correct: false, rationale: "這是典型的鴉片類藥物（Opioids）呼吸抑制模式，而非吸入麻醉藥。" },
+      { text: "對二氧化碳（$CO_{2}$）的反應敏感度增加", correct: false, rationale: "吸入麻醉藥會使 $CO_{2}$ 反應曲線右移，代表身體對高 $CO_{2}$ 的耐受性增加，呼吸驅動力減弱。" },
+      { text: "呼吸暫停閾值（Apneic Threshold）降低", correct: false, rationale: "吸入麻醉藥會提高呼吸暫停閾值，使得需要更高的 $PaCO_{2}$ 才能驅動自主呼吸。" }
+    ],
+    hint: "注意自主呼吸病人的呼吸形態變化，通常會觀察到呼吸變淺。",
+    slideRef: 20
+  },
+  {
+    question: "關於笑氣（$N_{2}O$）在臨床上的應用與特性，下列敘述何者錯誤？",
+    options: [
+      { text: "具有很強的麻醉效能，可單獨作為唯一的麻醉劑完成手術", correct: true, rationale: "笑氣的 MAC 超過 $100\\%$（約 $104\\%$–$105\\%$），單獨使用無法達到外科麻醉深度，通常作為輔助用藥。" },
+      { text: "會擴散進入身體封閉的空腔（如腸道氣體、氣胸處）使其體積膨脹", correct: false, rationale: "笑氣在血液中的溶解度遠高於氮氣，會迅速進入含氣空腔導致壓力或體積增加，這是其禁忌症之一。" },
+      { text: "血／氣分配係數低（約 $0.47$），誘導與甦醒皆快", correct: false, rationale: "笑氣在血液中極難溶解，因此其分壓平衡速度非常快。" },
+      { text: "具有鎮痛作用，常用於分娩或牙科手術的輔助止痛", correct: false, rationale: "笑氣在低濃度下即可提供顯著的止痛效果，這是其臨床重要用途。" }
+    ],
+    hint: "回想一下它的 MAC 數值，這決定了它是否能單獨作戰。",
+    slideRef: 12
+  },
+  {
+    question: "在神經外科手術中，若要減少吸入性麻醉藥導致的顱內壓（ICP）上升，臨床上可以採取哪種呼吸調控方式？",
+    options: [
+      { text: "過度通氣（Hyperventilation）降低 $PaCO_{2}$", correct: true, rationale: "低二氧化碳會導致腦血管收縮，抵消麻醉藥引起的直接血管擴張，進而降低腦血流量與 $ICP$。" },
+      { text: "降低每分鐘通氣量（Minute Ventilation）以累積 $CO_{2}$", correct: false, rationale: "$CO_{2}$ 升高會加劇腦血管擴張，導致 $ICP$ 進一步惡化。" },
+      { text: "給予高濃度的笑氣（$N_{2}O$）來輔助", correct: false, rationale: "笑氣被認為會增加腦代謝率與腦血流，對降低 $ICP$ 反而有害。" },
+      { text: "增加呼吸末正壓（PEEP）來改善氧合", correct: false, rationale: "過高的 PEEP 可能會阻礙靜脈回流，反而可能導致 $ICP$ 上升。" }
+    ],
+    hint: "控制動脈血中的二氧化碳分壓可以調節腦血管的直徑。",
+    slideRef: 22
+  },
+  {
+    question: "根據 Meyer-Overton Rule，吸入麻醉藥的效能（Potency）主要取決於下列哪項物理性質？",
+    options: [
+      { text: "脂溶性（油／氣分配係數）", correct: true, rationale: "該理論主張麻醉藥分子溶解於神經元膜的脂質部分，脂溶性越高，達到麻醉所需的濃度就越低（MAC 越小）。" },
+      { text: "水溶性（血液溶解度）", correct: false, rationale: "水溶性主要決定誘導速度，而非效能。" },
+      { text: "蒸氣壓（Vapor Pressure）", correct: false, rationale: "蒸氣壓決定了需要何種型式的揮發罐（Vaporizer），與麻醉強度無直接正相關。" },
+      { text: "分子量大小", correct: false, rationale: "分子量雖然會影響擴散速度，但不是決定麻醉強度的關鍵因素。" }
+    ],
+    hint: "想想麻醉藥作用在充滿脂質的神經細胞膜上的能力。",
+    slideRef: 4
+  },
+  {
+    question: "在長時間手術後，病人可能因吸入性麻醉藥的哪種影響而增加術後肺塌陷（Atelectasis）的風險？",
+    options: [
+      { text: "抑制呼吸道纖毛運動與黏液清除功能", correct: true, rationale: "麻醉藥會讓纖毛運動停滯，導致痰液積聚在小氣管內，容易形成痰栓並引發肺塌陷。" },
+      { text: "長期維持支氣管擴張導致肺泡過度膨脹", correct: false, rationale: "藥物的支氣管擴張作用通常隨停藥而消失，不會直接導致結構性損害。" },
+      { text: "藥物直接破壞肺泡表面張力素（Surfactant）", correct: false, rationale: "雖然通氣模式可能影響張力素分佈，但吸入麻醉藥本身並非主要破壞者。" },
+      { text: "導致呼吸道平滑肌永久性麻痺", correct: false, rationale: "藥物的作用是暫時且可逆的，不會造成肌肉永久麻痺。" }
+    ],
+    hint: "考慮到氣道內分泌物的排出機制受到藥物抑制。",
+    slideRef: 20
   }
 ];
 
